@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const data = `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`;
+const data = `${new Date().getHours()}:${new Date().getMinutes()}--${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`;
 
 const task = new Schema({
     Task:{

@@ -51,11 +51,12 @@
             res.send('Ocorreu um erro por favor tente novamente.');
         }
     });
-    app.get('delete/:id', async (req, res)=>{
+    app.get('/delete/:id', async (req, res)=>{
         try {
-            await Task
-        } catch (error) {
-            
+            await Task.findByIdAndDelete({_id: req.params.id});
+            res.redirect('/');
+        } catch (error) {   
+            res.send('Ocorreu um erro interno');
         }
     });
     app.get('/editar', (req, res)=>{
