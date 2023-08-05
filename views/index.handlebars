@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>To-Do List</h1>
+  <form action="/save" method="post">
+    <input type="text" id="taskInput" placeholder="Enter your task" name="task">
+    <button class="addButton" type="submit">Add</button>
+  </form>
+  <ul id="taskList">
+    {{#each tasks}}
+        <p>{{Task}}</p>
+        <small>{{date}}</small>
+          <form action="" method="post">
+            <button class="addButton">Edit</button>
+          </form>
+          <br>
+          <a href="delete/{{_id}}"><button class="delButton">Delete</button></a>
+          <hr>
+    {{else}}
+        <h4>No tasks Registered</h4>
+    {{/each}}
+  </ul>
+</div>
