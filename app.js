@@ -51,16 +51,22 @@
             res.send('Ocorreu um erro por favor tente novamente.');
         }
     });
-    app.get('/delete/:id', async (req, res)=>{
+    app.post('/delete', async (req, res)=>{
         try {
-            await Task.findByIdAndDelete({_id: req.params.id});
+            await Task.findByIdAndDelete({_id: req.body.id});
             res.redirect('/');
         } catch (error) {   
             res.send('Ocorreu um erro interno');
         }
     });
-    app.get('/editar', (req, res)=>{
-        res.render('edit');
+    app.get('/editar/:id', async (req, res)=>{
+        try {
+            const task = await Task.findById({_id: req.params.id});
+            const newTask = {Task: req.body.task};
+            res.render('edit', {task : task});
+        } catch (error) {
+            res.send('Ocorreu um erro');
+        }
     });
 
 

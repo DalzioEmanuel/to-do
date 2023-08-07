@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>To-Do List</h1>
+  <a href="/"><h1>To-Do List</h1></a>
   <form action="/save" method="post">
     <input type="text" id="taskInput" placeholder="Enter your task" name="task">
     <button class="addButton" type="submit">Add</button>
@@ -9,12 +9,14 @@
     {{#each tasks}}
         <p>{{Task}}</p>
         <small>{{date}}</small>
-        <br>
-          <form action="" method="post">
-            <button class="addButton">Edit</button>
-          </form>
           <br>
-          <a href="/delete/{{_id}}"><button class="delButton">Delete</button></a>
+            <a href="/editar/{{this._id}}"><button class="addButton">Edit</button></a>
+            <br>
+            <br>
+          <form action="/delete" method="post">
+            <input type="hidden" name="id" value="{{_id}}">
+            <button class="delButton" type="submit">Delete</button>
+          </form>
           <hr>
     {{else}}
         <h4>No tasks Registered</h4>
