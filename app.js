@@ -62,14 +62,23 @@
     app.get('/editar/:id', async (req, res)=>{
         try {
             const task = await Task.findById({_id: req.params.id});
-            const newTask = {Task: req.body.task};
             res.render('edit', {task : task});
         } catch (error) {
             res.send('Ocorreu um erro');
         }
     });
+    app.post('/save-edit', async (req, res)=>{
+        
+        const upadatedTask = req.body.task;
+        const id = req.body._id;
 
-
+        try {
+            await Task.findByIdAndUpdate(id, {Task : upadatedTask});
+            res.redirect('/');
+        } catch (error) {
+            res.send('Ocorreu um Erro' + error);
+        } 
+    });
 //Port configuration
     app.set('port', process.env.PORT || 8081);
     app.listen(app.get('port'), ()=> console.log(`Server running on port ${app.get('port')}, press Ctrl + C to stop.`));
